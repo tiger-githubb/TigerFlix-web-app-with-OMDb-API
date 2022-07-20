@@ -15,22 +15,65 @@
       </rooter-link>
     </div>
 
-    <form @submit.prevent="" class="search-box">
-      <input type="text" name="" placeholder="quel film voulez-vous voir ..." id="">
+    <form @submit.prevent="SearchMovies()" class="search-box">
+      <input type="text" placeholder="quel film voulez-vous voir ..." v-model="search" />
       <input type="submit" value="recherche">
     </form>
   </div>
 
-  <div class="movies list">
-    films
+  <div class="movies-list">
+    <div class="movie" v-for="movie in movies" :key="movie.imdbID">
+      <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
+        <div class="product-image">
+          <img :src="movie.Poster" alt="" />
+          <div class="type">{{ movie.Type }}</div>
+        </div>
+        <div class="detail">
+          <p class="year">{{ movie.Year }}</p>
+          <h3>{{ movie.Title }}</h3>
+        </div>
+      </router-link>
+    </div>
+
   </div>
 </template>
 
 <script>
+import env from '../env.js'
+import { ref } from 'vue';
 
 export default {
 
+  setup() {
+    //declarations des variables 
+    const search = ref("");
+    const movies = ref("");
+
+    const SearchMovies = () => {
+      if (search.value != "") {
+        console.log(search.value);
+        fetch(`http://www.omdbapi.com/?apikey=${env.apikey}&s=${search.value}`)
+          .then(response => response.json())
+          .then(data => {
+            movies.value = data.Search;
+            search.value = "";
+            console.log(movies.value);
+          })
+      }
+    }
+
+
+
+
+    return {
+      search,
+      movies,
+      SearchMovies,
+      env
+    }
+  }
 }
+
 </script>
 
 <style lang="scss">
@@ -118,5 +161,66 @@ export default {
       }
     }
   }
+
+
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 275px;
+  object-fit: cover;
+}
+
+.type {
+  position: absolute;
+  padding: 8px 16px;
+  background-color: #42BB83;
+  color: white;
+  bottom: 16px;
+  left: 0px;
+  text-transform: capitalize;
+}
+
+.product-image {
+  position: relative;
+  display: block;
+}
+
+.movie-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.movie {
+  max-width: 50%;
+  flex: 1 1 50%;
+  padding: 16px 8px;
+}
+
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 8px;
+}
+
+.detail {
+  background-color: #496583;
+  padding: 16px 8px;
+  flex: 1 1 100%;
+  border-radius: 8px;
+}
+
+
+.year {
+  color: #AAA;
+  font-size: 14px;
+}
+
+h3{
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
 }
 </style>
