@@ -14,6 +14,15 @@
         </div>
       </rooter-link>
     </div>
+
+    <form @submit.prevent="" class="search-box">
+      <input type="text" name="" placeholder="quel film voulez-vous voir ..." id="">
+      <input type="submit" value="recherche">
+    </form>
+  </div>
+
+  <div class="movies list">
+    films
   </div>
 </template>
 
@@ -26,7 +35,7 @@ export default {
 
 <style lang="scss">
 .home {
-  feature-card {
+  .feature-card {
     position: relative;
 
     .featured-img {
@@ -38,21 +47,74 @@ export default {
       position: relative;
       z-index: 0;
     }
+
     .detail {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0,0, 0,0.6);
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 16px;
       z-index: 1;
 
-      h3{
+      h3 {
         color: #ffff;
         margin-bottom: 16px;
       }
-      p{
+
+      p {
         color: #ffff;
+      }
+    }
+  }
+
+  .search-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+
+    input {
+      display: block;
+      appearance: none;
+      border: none;
+      outline: none;
+      background: none;
+
+      &[type="text"] {
+        width: 100%;
+        color: #ffff;
+        background-color: #496583;
+        font-size: 20px;
+        padding: 10px 16px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        transition: 0.4s;
+      }
+
+      &::placeholder {
+        color: #f3f3f3;
+      }
+
+      &:focus {
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      &[type="submit"] {
+        width: 100%;
+        max-width: 300px;
+        background-color: #428883;
+        padding: 16px;
+        border-radius: 8px;
+        color: #ffff;
+        font-size: 20px;
+        text-transform: uppercase;
+        transition: 0.4s;
+
+        &:active {
+          background-color: #3BB070;
+        }
       }
     }
   }
