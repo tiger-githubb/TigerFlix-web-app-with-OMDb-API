@@ -219,7 +219,7 @@ img {
   font-size: 14px;
 }
 
-h3{
+h3 {
   color: white;
   font-weight: 600;
   font-size: 18px;
