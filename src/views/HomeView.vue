@@ -77,7 +77,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 .home {
   .feature-card {
     position: relative;
@@ -167,10 +167,8 @@ export default {
 }
 
 img {
-  display: block;
-  width: 100%;
-  height: 275px;
-  object-fit: cover;
+  max-width : 100%;
+height : auto;
 }
 
 .type {

@@ -1,20 +1,25 @@
 <template>
   <div id="app">
-    <Translator></Translator>
+    <div class="search-box">
+      <Translator></Translator>
+    </div>
+
     <header>
       <router-link to="/">
-        <h1 translate="no"><span>Tiger</span>Movies</h1>
+        <h1 translate="no" class="title"><span>Tiger</span>Flix</h1>
       </router-link>
     </header>
     <main>
       <router-view></router-view>
+
+      
     </main>
   </div>
 
 </template>
 <script>
 
-import { Translator } from "../node_modules/vue-google-translate/src/lib-components/Translator.vue";
+import { Translator } from 'vue-google-translate';
 export default {
   name: "App",
   components: {
@@ -23,17 +28,50 @@ export default {
 };
 </script>
 <style lang="scss">
+$color: #3694d7;
+$timing: .3s;
+
+.title {
+  padding: 10px;
+}
+
+.goog-te-gadget .goog-te-combo {
+  font-family: "fira sans", sans-serif !important;
+  font-size: 20px;
+  max-width: 300px;
+  width: 100%;
+  background-color: #428883;
+  color: white !important;
+  border-radius: 8px;
+  cursor: pointer;
+  border: .06em solid transparent;
+  padding: 16px;
+  padding-left: 100px !important;
+
+}
+
+#\:0\.targetLanguage {
+  display: flex;
+  justify-content: center;
+}
+
 body {
   top: 0 !important;
 }
 
+#goog-gt-tt {
+  display: none !important;
+}
+
 /* get rids of the banner at the bottom of the web page */
-.goog-te-banner-frame{
+.goog-te-banner-frame {
   display: none;
 }
-#app > div.skiptranslate.goog-te-gadget > span {
+
+#app>div.skiptranslate.goog-te-gadget>span {
   display: none;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -44,6 +82,8 @@ body {
     background: transparentize($color: #428883, $amount: 0.5);
   }
 }
+
+
 
 body {
   background-color: #354952;
