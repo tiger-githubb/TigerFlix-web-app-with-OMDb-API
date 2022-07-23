@@ -19,7 +19,7 @@
 </template>
 <script>
 
-import { Translator } from 'vue-google-translate';
+import { Translator } from "../node_modules/vue-google-translate/src/lib-components/Translator.vue";
 export default {
   name: "App",
   components: {
