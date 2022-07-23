@@ -18,7 +18,7 @@
 
     <form @submit.prevent="SearchMovies()" class="search-box">
       <input type="text" placeholder="quel film voulez-vous voir ..." v-model="search" />
-      <input type="submit" value="recherche">
+      <input type="submit" value="recherche" translate="no" >
     </form>
   </div>
 

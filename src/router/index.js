@@ -1,12 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MovieDetail from '../views/MovieDetail.vue'
+import TopNav from '../components/TopNav.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+
+  {
+    path: '/top',
+    name: 'TopNav',
+    component: TopNav
   },
 
   {
